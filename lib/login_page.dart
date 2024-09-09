@@ -1,13 +1,19 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'Admin_page.dart';
+import 'package:shared_preferences/shared_preferences.dart'; // Import the package
+
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
+  
+
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
+
+
 
 class _LoginPageState extends State<LoginPage> {
   final TextEditingController _usernameController = TextEditingController();
@@ -16,41 +22,68 @@ class _LoginPageState extends State<LoginPage> {
   bool _rememberMe = false;
   bool _obscurePassword = true; // State to toggle password visibility
 
-  void _login() async {
-    if (_formKey.currentState!.validate()) {
-      String username = _usernameController.text;
-      String password = _passwordController.text;
+ @override
+  void initState() {
+    super.initState();
+    _checkLoginStatus();
+  }
 
-      final FirebaseFirestore _db = FirebaseFirestore.instance;
-      final QuerySnapshot snapshot = await _db
-          .collection('admin')
-          .where('username', isEqualTo: username)
-          .get();
 
-      if (snapshot.docs.isNotEmpty) {
-        final adminDoc = snapshot.docs.first;
-        if (adminDoc['password'] == password) {
-          // Login successful, navigate to AdminPage
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (context) => AdminPage(),
-            ),
-          );
-        } else {
-          // Invalid password, display error message
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('Invalid password')),
-          );
-        }
-      } else {
-        // User not found, display error message
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Admin not found')),
-        );
-      }
+   void _checkLoginStatus() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? username = prefs.getString('username'); // Check if username is stored
+
+    if (username != null) {
+      // User is already logged in, redirect to AdminPage
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => AdminPage(),
+        ),
+      );
     }
   }
+
+ void _login() async {
+  if (_formKey.currentState!.validate()) {
+    String username = _usernameController.text;
+    String password = _passwordController.text;
+
+    final FirebaseFirestore _db = FirebaseFirestore.instance;
+    final QuerySnapshot snapshot = await _db
+        .collection('admin')
+        .where('username', isEqualTo: username)
+        .get();
+
+    if (snapshot.docs.isNotEmpty) {
+      final adminDoc = snapshot.docs.first;
+      if (adminDoc['password'] == password) {
+        // Save the login status to SharedPreferences
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        await prefs.setString('username', username); // Store username
+
+        // Navigate to AdminPage
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => AdminPage(),
+          ),
+        );
+      } else {
+        // Show error for incorrect password
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Invalid password')),
+        );
+      }
+    } else {
+      // Show error for admin not found
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Admin not found')),
+      );
+    }
+  }
+}
+
 
   @override
   Widget build(BuildContext context) {
