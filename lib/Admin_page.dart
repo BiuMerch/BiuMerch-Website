@@ -80,6 +80,7 @@ class _AdminPageState extends State<AdminPage> {
   }
 
   void _checkLoginStatus() async {
+<<<<<<< HEAD
   SharedPreferences prefs = await SharedPreferences.getInstance();
   String? username = prefs.getString('username'); // Get the stored username
 
@@ -93,6 +94,21 @@ class _AdminPageState extends State<AdminPage> {
     );
   }
 }
+=======
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? username = prefs.getString('username'); // Get the stored username
+
+    if (username == null) {
+      // User is not logged in, navigate to the LoginPage
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => LoginPage(),
+        ),
+      );
+    }
+  }
+>>>>>>> 3d0ddc8 (Pembaruan Web)
 
   String _selectedMenu = 'Dashboard';
 
@@ -402,6 +418,7 @@ class _AdminPageState extends State<AdminPage> {
                     ),
                     _buildDivider(),
                     // Expanded to ensure the button is pushed to the bottom
+<<<<<<< HEAD
                   ElevatedButton(
   onPressed: () async {
     // Clear the session
@@ -431,6 +448,38 @@ class _AdminPageState extends State<AdminPage> {
     side: const BorderSide(color: Color(0xFF0B4D3B)),
   ),
 )
+=======
+                    ElevatedButton(
+                      onPressed: () async {
+                        // Clear the session
+                        SharedPreferences prefs =
+                            await SharedPreferences.getInstance();
+                        await prefs.clear(); // Clear all stored preferences
+
+                        // Navigate back to login page
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => LoginPage(),
+                          ),
+                        );
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          Icon(Icons.exit_to_app, color: Colors.white),
+                          SizedBox(width: 8),
+                          Text('Keluar', style: TextStyle(color: Colors.white)),
+                        ],
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFF0B4D3B),
+                        foregroundColor: Colors.white,
+                        minimumSize: const Size(double.infinity, 40),
+                        side: const BorderSide(color: Color(0xFF0B4D3B)),
+                      ),
+                    )
+>>>>>>> 3d0ddc8 (Pembaruan Web)
                   ],
                 ),
               ),

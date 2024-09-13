@@ -1,9 +1,14 @@
+<<<<<<< HEAD
 import 'dart:io'; 
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+=======
+import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+>>>>>>> 3d0ddc8 (Pembaruan Web)
 
 class KategoriTable extends StatefulWidget {
   @override
@@ -11,10 +16,13 @@ class KategoriTable extends StatefulWidget {
 }
 
 class _KategoriTableState extends State<KategoriTable> {
+<<<<<<< HEAD
   final ImagePicker _picker = ImagePicker();
   File? _selectedImage;
   String? _imageUrl;
 
+=======
+>>>>>>> 3d0ddc8 (Pembaruan Web)
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
@@ -41,9 +49,18 @@ class _KategoriTableState extends State<KategoriTable> {
             child: DataTable(
               columnSpacing: 150,
               columns: const [
+<<<<<<< HEAD
                 DataColumn(label: Text('Nama Kategori', style: TextStyle(fontWeight: FontWeight.bold))),
                 DataColumn(label: Text('Gambar', style: TextStyle(fontWeight: FontWeight.bold))),
                 DataColumn(label: Text('Aksi', style: TextStyle(fontWeight: FontWeight.bold))),
+=======
+                DataColumn(
+                    label: Text('Nama Kategori',
+                        style: TextStyle(fontWeight: FontWeight.bold))),
+                DataColumn(
+                    label: Text('Aksi',
+                        style: TextStyle(fontWeight: FontWeight.bold))),
+>>>>>>> 3d0ddc8 (Pembaruan Web)
               ],
               rows: kategoriDocs.map((doc) {
                 final data = doc.data() as Map<String, dynamic>;
@@ -57,29 +74,52 @@ class _KategoriTableState extends State<KategoriTable> {
                       ),
                     ),
                     DataCell(
+<<<<<<< HEAD
                       _buildImageCell(data['foto'], data['nm_kategori'] ?? ''),
                     ),
                     DataCell(
+=======
+>>>>>>> 3d0ddc8 (Pembaruan Web)
                       Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           ElevatedButton(
+<<<<<<< HEAD
                             onPressed: () => _showEditDialog(context, docId, data),
+=======
+                            onPressed: () =>
+                                _showEditDialog(context, docId, data),
+>>>>>>> 3d0ddc8 (Pembaruan Web)
                             child: Text('Edit'),
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.green[700],
                               foregroundColor: Colors.white,
+<<<<<<< HEAD
                               padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+=======
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 16, vertical: 8),
+>>>>>>> 3d0ddc8 (Pembaruan Web)
                             ),
                           ),
                           SizedBox(width: 8),
                           ElevatedButton(
+<<<<<<< HEAD
                             onPressed: () => _showDeleteConfirmationDialog(context, docId),
+=======
+                            onPressed: () =>
+                                _showDeleteConfirmationDialog(context, docId),
+>>>>>>> 3d0ddc8 (Pembaruan Web)
                             child: Text('Hapus'),
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.red[700],
                               foregroundColor: Colors.white,
+<<<<<<< HEAD
                               padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+=======
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 16, vertical: 8),
+>>>>>>> 3d0ddc8 (Pembaruan Web)
                             ),
                           ),
                         ],
@@ -95,6 +135,7 @@ class _KategoriTableState extends State<KategoriTable> {
     );
   }
 
+<<<<<<< HEAD
  Widget _buildImageCell(String? imageUrl, String nm_kategori) {
   if (imageUrl == null || imageUrl.isEmpty) {
     return _buildPlaceholder(nm_kategori);
@@ -163,6 +204,12 @@ class _KategoriTableState extends State<KategoriTable> {
   void _showEditDialog(BuildContext context, String docId, Map<String, dynamic> data) {
     final TextEditingController nameController = TextEditingController(text: data['nm_kategori'] ?? '');
     final TextEditingController imageUrlController = TextEditingController(text: data['imageUrl'] ?? '');
+=======
+  void _showEditDialog(BuildContext context, String docId,
+      Map<String, dynamic> data) {
+    final TextEditingController nameController =
+        TextEditingController(text: data['nm_kategori'] ?? '');
+>>>>>>> 3d0ddc8 (Pembaruan Web)
 
     showDialog(
       context: context,
@@ -176,6 +223,7 @@ class _KategoriTableState extends State<KategoriTable> {
                 controller: nameController,
                 decoration: InputDecoration(labelText: 'Nama Kategori'),
               ),
+<<<<<<< HEAD
               TextField(
                 controller: imageUrlController,
                 decoration: InputDecoration(labelText: 'URL Gambar'),
@@ -189,6 +237,8 @@ class _KategoriTableState extends State<KategoriTable> {
                   height: 100,
                   fit: BoxFit.cover,
                 ),
+=======
+>>>>>>> 3d0ddc8 (Pembaruan Web)
             ],
           ),
           actions: [
@@ -199,6 +249,7 @@ class _KategoriTableState extends State<KategoriTable> {
               child: Text('Batal'),
             ),
             ElevatedButton(
+<<<<<<< HEAD
               onPressed: () async {
                 String imageUrl = imageUrlController.text;
                 if (_selectedImage != null) {
@@ -208,6 +259,10 @@ class _KategoriTableState extends State<KategoriTable> {
                   }
                 }
                 _updateItem(context, docId, nameController.text, imageUrl);
+=======
+              onPressed: () {
+                _updateItem(context, docId, nameController.text);
+>>>>>>> 3d0ddc8 (Pembaruan Web)
                 Navigator.of(context).pop();
               },
               child: Text('Simpan'),
@@ -222,11 +277,22 @@ class _KategoriTableState extends State<KategoriTable> {
     );
   }
 
+<<<<<<< HEAD
   void _updateItem(BuildContext context, String docId, String name, String imageUrl) async {
     try {
       await FirebaseFirestore.instance.collection('category').doc(docId).update({
         'nm_kategori': name,
         'foto': imageUrl,
+=======
+  void _updateItem(
+      BuildContext context, String docId, String name) async {
+    try {
+      await FirebaseFirestore.instance
+          .collection('category')
+          .doc(docId)
+          .update({
+        'nm_kategori': name,
+>>>>>>> 3d0ddc8 (Pembaruan Web)
       });
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -245,7 +311,12 @@ class _KategoriTableState extends State<KategoriTable> {
     }
   }
 
+<<<<<<< HEAD
   void _showDeleteConfirmationDialog(BuildContext context, String docId) {
+=======
+  void _showDeleteConfirmationDialog(
+      BuildContext context, String docId) {
+>>>>>>> 3d0ddc8 (Pembaruan Web)
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -278,7 +349,14 @@ class _KategoriTableState extends State<KategoriTable> {
 
   void _deleteItem(BuildContext context, String docId) async {
     try {
+<<<<<<< HEAD
       await FirebaseFirestore.instance.collection('category').doc(docId).delete();
+=======
+      await FirebaseFirestore.instance
+          .collection('category')
+          .doc(docId)
+          .delete();
+>>>>>>> 3d0ddc8 (Pembaruan Web)
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('Item berhasil dihapus'),
@@ -295,4 +373,8 @@ class _KategoriTableState extends State<KategoriTable> {
       );
     }
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 3d0ddc8 (Pembaruan Web)

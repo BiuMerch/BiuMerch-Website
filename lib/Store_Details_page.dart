@@ -7,6 +7,10 @@ import 'package:apa/login_page.dart';
 import 'package:apa/pemesanan.dart';
 import 'package:apa/produk_page.dart';
 import 'package:apa/tarik_dana.dart';
+<<<<<<< HEAD
+=======
+import 'package:shared_preferences/shared_preferences.dart';
+>>>>>>> 3d0ddc8 (Pembaruan Web)
 
 class StoreDetailsPage extends StatelessWidget {
   final Map<String, dynamic> storeData;
@@ -126,6 +130,7 @@ class StoreDetailsPage extends StatelessWidget {
                       );
                     }),
                     _buildDivider(),
+<<<<<<< HEAD
                     Spacer(),
                     Padding(
                       padding: const EdgeInsets.all(16.0),
@@ -157,6 +162,38 @@ class StoreDetailsPage extends StatelessWidget {
                         ),
                       ),
                     ),
+=======
+                     ElevatedButton(
+                      onPressed: () async {
+                        // Clear the session
+                        SharedPreferences prefs =
+                            await SharedPreferences.getInstance();
+                        await prefs.clear(); // Clear all stored preferences
+
+                        // Navigate back to login page
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => LoginPage(),
+                          ),
+                        );
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          Icon(Icons.exit_to_app, color: Colors.white),
+                          SizedBox(width: 8),
+                          Text('Keluar', style: TextStyle(color: Colors.white)),
+                        ],
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFF0B4D3B),
+                        foregroundColor: Colors.white,
+                        minimumSize: const Size(double.infinity, 40),
+                        side: const BorderSide(color: Color(0xFF0B4D3B)),
+                      ),
+                    )
+>>>>>>> 3d0ddc8 (Pembaruan Web)
                   ],
                 ),
               ),

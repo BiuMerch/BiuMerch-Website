@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+<<<<<<< HEAD
 import 'package:cached_network_image/cached_network_image.dart';
+=======
+>>>>>>> 3d0ddc8 (Pembaruan Web)
 
 class ProductTable extends StatelessWidget {
   @override
@@ -26,18 +29,26 @@ class ProductTable extends StatelessWidget {
           Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
 
           // Extract data from Firestore document
+<<<<<<< HEAD
           String storeId = data['storeId'] ?? 'N/A';
           String name = data['name'] ?? 'No Name';
           String category = data['category'] ?? 'Uncategorized';
+=======
+          String name = data['name'] ?? 'No Name';
+>>>>>>> 3d0ddc8 (Pembaruan Web)
           String price = data['price'] ?? '0';
           String stock = data['stock'] ?? '0';
           String rating = data['rating'] ?? '0';
           String description = data['description'] ?? 'No Description';
+<<<<<<< HEAD
           List<dynamic>? imageUrls = data['imageUrls'] as List<dynamic>?;
+=======
+>>>>>>> 3d0ddc8 (Pembaruan Web)
 
           return DataRow(
             cells: [
               DataCell(Text('${index + 1}')), // Serial number
+<<<<<<< HEAD
               DataCell(Text(storeId)),
               DataCell(Text(name)),
               DataCell(Text(category)),
@@ -45,6 +56,12 @@ class ProductTable extends StatelessWidget {
               DataCell(Text(stock)),
               DataCell(Text(rating)),
               DataCell(_buildImageCell(imageUrls, name, context)),
+=======
+              DataCell(Text(name)),
+              DataCell(Text(price)),
+              DataCell(Text(stock)),
+              DataCell(Text(rating)),
+>>>>>>> 3d0ddc8 (Pembaruan Web)
               DataCell(Text(description)),
               DataCell(
                 IconButton(
@@ -67,6 +84,7 @@ class ProductTable extends StatelessWidget {
                 borderRadius: BorderRadius.circular(8),
               ),
               columns: [
+<<<<<<< HEAD
                 DataColumn(
                     label: _buildHeaderText('No')), // Serial number header
                 DataColumn(label: _buildHeaderText('Store ID')),
@@ -76,6 +94,13 @@ class ProductTable extends StatelessWidget {
                 DataColumn(label: _buildHeaderText('Stock')),
                 DataColumn(label: _buildHeaderText('Rating')),
                 DataColumn(label: _buildHeaderText('Image')),
+=======
+                DataColumn(label: _buildHeaderText('No')), // Serial number header
+                DataColumn(label: _buildHeaderText('Name')),
+                DataColumn(label: _buildHeaderText('Price')),
+                DataColumn(label: _buildHeaderText('Stock')),
+                DataColumn(label: _buildHeaderText('Rating')),
+>>>>>>> 3d0ddc8 (Pembaruan Web)
                 DataColumn(label: _buildHeaderText('Description')),
                 DataColumn(label: _buildHeaderText('Action')), // Action header
               ],
@@ -87,6 +112,7 @@ class ProductTable extends StatelessWidget {
     );
   }
 
+<<<<<<< HEAD
   Widget _buildImageCell(
       List<dynamic>? imageUrls, String productName, BuildContext context) {
     if (imageUrls == null || imageUrls.isEmpty) {
@@ -135,6 +161,8 @@ class ProductTable extends StatelessWidget {
     );
   }
 
+=======
+>>>>>>> 3d0ddc8 (Pembaruan Web)
   Widget _buildHeaderText(String text) {
     return Text(
       text,
@@ -146,6 +174,7 @@ class ProductTable extends StatelessWidget {
     );
   }
 
+<<<<<<< HEAD
   void _showImageDialog(
       BuildContext context, List<dynamic> imageUrls, String productName) {
     showDialog(
@@ -201,6 +230,8 @@ class ProductTable extends StatelessWidget {
     );
   }
 
+=======
+>>>>>>> 3d0ddc8 (Pembaruan Web)
   void _confirmDelete(BuildContext context, String productId) {
     showDialog(
       context: context,

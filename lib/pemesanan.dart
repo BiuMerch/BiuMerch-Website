@@ -12,6 +12,10 @@ import 'package:apa/penarikan_table.dart';
 import 'package:apa/banner_page.dart';
 import 'package:apa/Admin_page.dart';
 import 'package:apa/penarikan_form.dart';
+<<<<<<< HEAD
+=======
+import 'package:shared_preferences/shared_preferences.dart';
+>>>>>>> 3d0ddc8 (Pembaruan Web)
 
 class PemesananPage extends StatefulWidget {
   @override
@@ -194,6 +198,7 @@ Widget build(BuildContext context) {
                     _selectedMenu == 'Banner',
                   ),
                   _buildDivider(),
+<<<<<<< HEAD
                  Expanded(
                     child: Align(
                       alignment: Alignment.bottomCenter,
@@ -227,6 +232,38 @@ Widget build(BuildContext context) {
                       ),
                     ),
                   ),
+=======
+                  ElevatedButton(
+                      onPressed: () async {
+                        // Clear the session
+                        SharedPreferences prefs =
+                            await SharedPreferences.getInstance();
+                        await prefs.clear(); // Clear all stored preferences
+
+                        // Navigate back to login page
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => LoginPage(),
+                          ),
+                        );
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          Icon(Icons.exit_to_app, color: Colors.white),
+                          SizedBox(width: 8),
+                          Text('Keluar', style: TextStyle(color: Colors.white)),
+                        ],
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFF0B4D3B),
+                        foregroundColor: Colors.white,
+                        minimumSize: const Size(double.infinity, 40),
+                        side: const BorderSide(color: Color(0xFF0B4D3B)),
+                      ),
+                    )
+>>>>>>> 3d0ddc8 (Pembaruan Web)
                 ],
               ),
             ),
@@ -454,7 +491,10 @@ class PesananTable extends StatelessWidget {
           String status = data['status'] ?? 'N/A';
           Timestamp expiryTime =
               data['expiryTime'] as Timestamp? ?? Timestamp.now();
+<<<<<<< HEAD
           String qrisUrl = data['qrisUrl'] ?? 'N/A';
+=======
+>>>>>>> 3d0ddc8 (Pembaruan Web)
           int totalPrice = data['totalPrice'] ?? 0;
 
           List<dynamic> stores = data['stores'] ?? [];
@@ -471,7 +511,10 @@ class PesananTable extends StatelessWidget {
 
           if (items.isNotEmpty) {
             Map<String, dynamic> firstItem = items[0];
+<<<<<<< HEAD
             String productImage = firstItem['productImage'] ?? '';
+=======
+>>>>>>> 3d0ddc8 (Pembaruan Web)
             String productName = firstItem['productName'] ?? 'N/A';
             int productPrice = firstItem['productPrice'] ?? 0;
             int quantity = firstItem['quantity'] ?? 0;
@@ -483,14 +526,21 @@ class PesananTable extends StatelessWidget {
                 DataCell(Text(rowNumber.toString())),
                 DataCell(Text(customerName)),
                 DataCell(Text(customerPhone)),
+<<<<<<< HEAD
                 DataCell(_buildImageCell(context, productImage, productName)),
+=======
+>>>>>>> 3d0ddc8 (Pembaruan Web)
                 DataCell(Text(productName)),
                 DataCell(Text(productPrice.toString())),
                 DataCell(Text(quantity.toString())),
                 DataCell(Text(status)),
                 DataCell(Text(timestamp.toDate().toString())),
+<<<<<<< HEAD
                 DataCell(
                     Text(totalPrice.toString())), // Gunakan totalPrice di sini
+=======
+                DataCell(Text(totalPrice.toString())),
+>>>>>>> 3d0ddc8 (Pembaruan Web)
                 DataCell(Text(storeName)),
                 DataCell(Text(expiryTime.toDate().toString())),
                 DataCell(
@@ -521,13 +571,20 @@ class PesananTable extends StatelessWidget {
                 DataCell(Text(customerName)),
                 DataCell(Text(customerPhone)),
                 DataCell(Text('N/A')),
+<<<<<<< HEAD
                 DataCell(Text('N/A')),
+=======
+>>>>>>> 3d0ddc8 (Pembaruan Web)
                 DataCell(Text('0')),
                 DataCell(Text('0')),
                 DataCell(Text(status)),
                 DataCell(Text(expiryTime.toDate().toString())),
+<<<<<<< HEAD
                 DataCell(
                     Text(totalPrice.toString())), // Gunakan totalPrice di sini
+=======
+                DataCell(Text(totalPrice.toString())),
+>>>>>>> 3d0ddc8 (Pembaruan Web)
                 DataCell(Text(storeName)),
                 DataCell(Text(expiryTime.toDate().toString())),
                 DataCell(
@@ -566,7 +623,10 @@ class PesananTable extends StatelessWidget {
                 DataColumn(label: _buildHeaderText('No.')),
                 DataColumn(label: _buildHeaderText('Customer Name')),
                 DataColumn(label: _buildHeaderText('Customer Phone')),
+<<<<<<< HEAD
                 DataColumn(label: _buildHeaderText('Product Image')),
+=======
+>>>>>>> 3d0ddc8 (Pembaruan Web)
                 DataColumn(label: _buildHeaderText('Product Name')),
                 DataColumn(label: _buildHeaderText('Product Price')),
                 DataColumn(label: _buildHeaderText('Quantity')),
@@ -585,6 +645,7 @@ class PesananTable extends StatelessWidget {
     );
   }
 
+<<<<<<< HEAD
 
 
   Map<String, int> _processTransactions(List<QueryDocumentSnapshot> docs) {
@@ -692,6 +753,8 @@ class PesananTable extends StatelessWidget {
     );
   }
 
+=======
+>>>>>>> 3d0ddc8 (Pembaruan Web)
   Widget _buildHeaderText(String text) {
     return Text(
       text,

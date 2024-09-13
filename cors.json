@@ -1,0 +1,9 @@
+[
+    {
+      "origin": ["https://simirpl22a-biumerch-51620.web.app"],
+      "method": ["GET"],
+      "maxAgeSeconds": 3600,
+      "responseHeader": ["Content-Type"]
+    }
+  ]
+  

@@ -13,7 +13,13 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 import 'package:flutter/foundation.dart'; // For kIsWeb
+<<<<<<< HEAD
 import 'dart:typed_data'; // For Uint8List
+=======
+import 'dart:typed_data';
+
+import 'package:shared_preferences/shared_preferences.dart'; // For Uint8List
+>>>>>>> 3d0ddc8 (Pembaruan Web)
 
 class KategoriPage extends StatefulWidget {
   @override
@@ -86,6 +92,7 @@ class _KategoriPageState extends State<KategoriPage> {
                       },
                       _selectedMenu == 'Dashboard',
                     ),
+<<<<<<< HEAD
 
                     _buildDivider(),
                      _buildMenuItem(
@@ -105,6 +112,26 @@ class _KategoriPageState extends State<KategoriPage> {
                     _selectedMenu == 'user',
                   ),
                   _buildDivider(),
+=======
+                    _buildDivider(),
+                    _buildMenuItem(
+                      context,
+                      Icons.supervised_user_circle,
+                      'User',
+                      () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => UserPage()),
+                        ).then((_) {
+                          setState(() {
+                            _selectedMenu = 'user';
+                          });
+                        });
+                      },
+                      _selectedMenu == 'user',
+                    ),
+                    _buildDivider(),
+>>>>>>> 3d0ddc8 (Pembaruan Web)
                     _buildMenuItem(
                       context,
                       Icons.monetization_on,
@@ -121,7 +148,10 @@ class _KategoriPageState extends State<KategoriPage> {
                       },
                       _selectedMenu == 'Tarik Dana',
                     ),
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3d0ddc8 (Pembaruan Web)
                     _buildDivider(),
                     _buildMenuItem(
                       context,
@@ -170,7 +200,10 @@ class _KategoriPageState extends State<KategoriPage> {
                       _selectedMenu == 'Transaksi',
                     ),
                     _buildDivider(),
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3d0ddc8 (Pembaruan Web)
                     _buildMenuItem(
                       context,
                       Icons.shopping_cart,
@@ -188,7 +221,10 @@ class _KategoriPageState extends State<KategoriPage> {
                       _selectedMenu == 'Toko',
                     ),
                     _buildDivider(),
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3d0ddc8 (Pembaruan Web)
                     _buildMenuItem(
                       context,
                       Icons.flag,
@@ -206,6 +242,7 @@ class _KategoriPageState extends State<KategoriPage> {
                       _selectedMenu == 'Banner',
                     ),
                     _buildDivider(),
+<<<<<<< HEAD
                    Expanded(
                     child: Align(
                       alignment: Alignment.bottomCenter,
@@ -239,6 +276,38 @@ class _KategoriPageState extends State<KategoriPage> {
                       ),
                     ),
                   ),
+=======
+                    ElevatedButton(
+                      onPressed: () async {
+                        // Clear the session
+                        SharedPreferences prefs =
+                            await SharedPreferences.getInstance();
+                        await prefs.clear(); // Clear all stored preferences
+
+                        // Navigate back to login page
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => LoginPage(),
+                          ),
+                        );
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          Icon(Icons.exit_to_app, color: Colors.white),
+                          SizedBox(width: 8),
+                          Text('Keluar', style: TextStyle(color: Colors.white)),
+                        ],
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFF0B4D3B),
+                        foregroundColor: Colors.white,
+                        minimumSize: const Size(double.infinity, 40),
+                        side: const BorderSide(color: Color(0xFF0B4D3B)),
+                      ),
+                    )
+>>>>>>> 3d0ddc8 (Pembaruan Web)
                   ],
                 ),
               ),
@@ -360,6 +429,7 @@ class TambahKategoriPage extends StatefulWidget {
 
 class _TambahKategoriPageState extends State<TambahKategoriPage> {
   final TextEditingController _kategoriController = TextEditingController();
+<<<<<<< HEAD
   File? _selectedImage;
   Uint8List? _selectedImageBytes; // Use Uint8List for web
   String? _imageUrl;
@@ -450,6 +520,21 @@ class _TambahKategoriPageState extends State<TambahKategoriPage> {
     } catch (e) {
       print('Error uploading image: $e');
       // Notify the user of a failed upload.
+=======
+
+  Future<void> _addKategori() async {
+    try {
+      await FirebaseFirestore.instance.collection('category').add({
+        'nm_kategori': _kategoriController.text,
+      });
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Kategori berhasil ditambahkan')),
+      );
+
+      Navigator.pop(context);
+    } catch (e) {
+>>>>>>> 3d0ddc8 (Pembaruan Web)
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Gagal menambahkan kategori')),
       );
@@ -467,6 +552,7 @@ class _TambahKategoriPageState extends State<TambahKategoriPage> {
             controller: _kategoriController,
             decoration: InputDecoration(labelText: 'Nama Kategori'),
           ),
+<<<<<<< HEAD
           SizedBox(height: 8),
           if (_selectedImage != null || _selectedImageBytes != null)
             kIsWeb
@@ -476,6 +562,8 @@ class _TambahKategoriPageState extends State<TambahKategoriPage> {
             onPressed: _pickImage,
             child: Text('Pilih Gambar'),
           ),
+=======
+>>>>>>> 3d0ddc8 (Pembaruan Web)
         ],
       ),
       actions: [
@@ -486,10 +574,18 @@ class _TambahKategoriPageState extends State<TambahKategoriPage> {
           child: Text('Batal'),
         ),
         ElevatedButton(
+<<<<<<< HEAD
           onPressed: _uploadImage,
+=======
+          onPressed: _addKategori,
+>>>>>>> 3d0ddc8 (Pembaruan Web)
           child: Text('Simpan'),
         ),
       ],
     );
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 3d0ddc8 (Pembaruan Web)

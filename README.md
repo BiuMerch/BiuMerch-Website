@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # BIUMERCH SI22A
+=======
+# apa
+>>>>>>> 3d0ddc8 (Pembaruan Web)
 
 A new Flutter project.
 

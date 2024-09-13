@@ -12,6 +12,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:apa/produk_page.dart';
 import 'package:image_picker/image_picker.dart';
+<<<<<<< HEAD
+=======
+import 'package:shared_preferences/shared_preferences.dart';
+>>>>>>> 3d0ddc8 (Pembaruan Web)
 import 'banner_page.dart';
 import 'kategori_page.dart';
 import 'Admin_page.dart';
@@ -322,6 +326,7 @@ class _BannerPageState extends State<BannerPage> {
                       ),
 
                       _buildDivider(),
+<<<<<<< HEAD
                      Expanded(
                     child: Align(
                       alignment: Alignment.bottomCenter,
@@ -355,6 +360,38 @@ class _BannerPageState extends State<BannerPage> {
                       ),
                     ),
                   ),
+=======
+                     ElevatedButton(
+                      onPressed: () async {
+                        // Clear the session
+                        SharedPreferences prefs =
+                            await SharedPreferences.getInstance();
+                        await prefs.clear(); // Clear all stored preferences
+
+                        // Navigate back to login page
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => LoginPage(),
+                          ),
+                        );
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          Icon(Icons.exit_to_app, color: Colors.white),
+                          SizedBox(width: 8),
+                          Text('Keluar', style: TextStyle(color: Colors.white)),
+                        ],
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFF0B4D3B),
+                        foregroundColor: Colors.white,
+                        minimumSize: const Size(double.infinity, 40),
+                        side: const BorderSide(color: Color(0xFF0B4D3B)),
+                      ),
+                    )
+>>>>>>> 3d0ddc8 (Pembaruan Web)
                   ],
                 ),
               ),
