@@ -1,21 +1,19 @@
 import 'dart:io';
 
 import 'package:apa/Admin_page.dart';
-import 'package:apa/Toko_page.dart';
 import 'package:apa/banner_page.dart';
 import 'package:apa/kategori_page.dart';
+import 'package:apa/login_page.dart';
 import 'package:apa/pemesanan.dart';
 import 'package:apa/produk_page.dart';
+import 'package:apa/user.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart'; 
-import 'package:apa/login_page.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:apa/user.dart'; 
 
 class WalletPage extends StatefulWidget {
   @override
@@ -37,7 +35,7 @@ class _WalletPageState extends State<WalletPage> {
               fit: BoxFit.cover,
             ),
           ),
-            Row(
+          Row(
             children: [
               // Sidebar
               Container(
@@ -106,7 +104,7 @@ class _WalletPageState extends State<WalletPage> {
                       _selectedMenu == 'user',
                     ),
                     _buildDivider(),
-                     _buildMenuItem(
+                    _buildMenuItem(
                       context,
                       Icons.monetization_on,
                       'Tarik Dana',
@@ -258,7 +256,7 @@ class _WalletPageState extends State<WalletPage> {
                       ),
                       SizedBox(height: 16),
                       Expanded(
-                        child: WithdrawlTable(), 
+                        child: WithdrawlTable(),
                       ),
                     ],
                   ),
@@ -332,8 +330,6 @@ class _WalletPageState extends State<WalletPage> {
   }
 }
 
-
-
 class WithdrawlTable extends StatelessWidget {
   final FirebaseStorage _storage = FirebaseStorage.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -374,7 +370,8 @@ class WithdrawlTable extends StatelessWidget {
 
           // Parsing tanggal to DateTime and formatting
           DateTime parsedTanggal = DateTime.tryParse(tanggal) ?? DateTime.now();
-          String formattedTanggal = DateFormat('yyyy-MM-dd HH:mm:ss').format(parsedTanggal);
+          String formattedTanggal =
+              DateFormat('yyyy-MM-dd HH:mm:ss').format(parsedTanggal);
 
           return DataRow(
             cells: [
@@ -406,14 +403,16 @@ class WithdrawlTable extends StatelessWidget {
                     ElevatedButton(
                       onPressed: status == 'Done'
                           ? null // Disable if status is 'Done'
-                          : () => _updateWithdrawlStatus(context, docId, 'Done'),
+                          : () =>
+                              _updateWithdrawlStatus(context, docId, 'Done'),
                       child: Text('Done'),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: status == 'Done'
                             ? Colors.grey // Grey when disabled
                             : Colors.green, // Green when enabled
                         foregroundColor: Colors.white,
-                        padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 8, vertical: 8),
                       ),
                     ),
                     SizedBox(width: 8),
@@ -421,14 +420,16 @@ class WithdrawlTable extends StatelessWidget {
                     ElevatedButton(
                       onPressed: status == 'Cancel'
                           ? null // Disable if status is 'Cancel'
-                          : () => _updateWithdrawlStatus(context, docId, 'Cancel'),
+                          : () =>
+                              _updateWithdrawlStatus(context, docId, 'Cancel'),
                       child: Text('Cancel'),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: status == 'Cancel'
                             ? Colors.grey // Grey when disabled
                             : Colors.orange, // Orange when enabled
                         foregroundColor: Colors.white,
-                        padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 8, vertical: 8),
                       ),
                     ),
                     SizedBox(width: 8),
@@ -439,7 +440,8 @@ class WithdrawlTable extends StatelessWidget {
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.red,
                         foregroundColor: Colors.white,
-                        padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 8, vertical: 8),
                       ),
                     ),
                     SizedBox(width: 8),
@@ -450,7 +452,8 @@ class WithdrawlTable extends StatelessWidget {
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.blue,
                         foregroundColor: Colors.white,
-                        padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 8, vertical: 8),
                       ),
                     ),
                   ],
@@ -490,7 +493,8 @@ class WithdrawlTable extends StatelessWidget {
     );
   }
 
-  void _updateWithdrawlStatus(BuildContext context, String docId, String status) {
+  void _updateWithdrawlStatus(
+      BuildContext context, String docId, String status) {
     FirebaseFirestore.instance.collection('withdrawl').doc(docId).update({
       'status': status,
     }).then((_) {
@@ -527,13 +531,15 @@ class WithdrawlTable extends StatelessWidget {
         if (kIsWeb) {
           // For web, upload the selected file bytes
           uploadTask = _storage
-              .ref('payment_proofs/${docId}_${DateTime.now().millisecondsSinceEpoch}.png')
+              .ref(
+                  'payment_proofs/${docId}_${DateTime.now().millisecondsSinceEpoch}.png')
               .putData(pickedFile.bytes!);
         } else {
           // For mobile, upload the file path
           File file = File(pickedFile.path!);
           uploadTask = _storage
-              .ref('payment_proofs/${docId}_${DateTime.now().millisecondsSinceEpoch}.png')
+              .ref(
+                  'payment_proofs/${docId}_${DateTime.now().millisecondsSinceEpoch}.png')
               .putFile(file);
         }
 
@@ -541,7 +547,10 @@ class WithdrawlTable extends StatelessWidget {
         String downloadUrl = await snapshot.ref.getDownloadURL();
 
         // Save the URL in Firestore
-        await FirebaseFirestore.instance.collection('withdrawl').doc(docId).update({
+        await FirebaseFirestore.instance
+            .collection('withdrawl')
+            .doc(docId)
+            .update({
           'buktiBayar': downloadUrl,
         });
 
@@ -584,7 +593,10 @@ class WithdrawlTable extends StatelessWidget {
           ),
           ElevatedButton(
             onPressed: () {
-              FirebaseFirestore.instance.collection('withdrawl').doc(docId).delete();
+              FirebaseFirestore.instance
+                  .collection('withdrawl')
+                  .doc(docId)
+                  .delete();
               Navigator.of(context).pop();
             },
             child: Text('Delete'),
@@ -598,4 +610,3 @@ class WithdrawlTable extends StatelessWidget {
     );
   }
 }
-

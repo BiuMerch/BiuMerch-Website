@@ -1,12 +1,12 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
 import 'package:apa/Admin_page.dart';
 import 'package:apa/banner_page.dart';
 import 'package:apa/login_page.dart';
 import 'package:apa/pemesanan.dart';
 import 'package:apa/produk_page.dart';
 import 'package:apa/tarik_dana.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class StoreDetailsPage extends StatelessWidget {
@@ -127,7 +127,7 @@ class StoreDetailsPage extends StatelessWidget {
                       );
                     }),
                     _buildDivider(),
-                     ElevatedButton(
+                    ElevatedButton(
                       onPressed: () async {
                         // Clear the session
                         SharedPreferences prefs =
@@ -299,9 +299,9 @@ class StoreDetailsPage extends StatelessWidget {
                                               cells: [
                                                 DataCell(Text(
                                                     (index + 1).toString())),
-                                                DataCell(Text(productData[
-                                                        'name'] ??
-                                                    'N/A')),
+                                                DataCell(Text(
+                                                    productData['name'] ??
+                                                        'N/A')),
                                                 DataCell(Text(productData[
                                                         'description'] ??
                                                     'N/A')),
@@ -316,10 +316,9 @@ class StoreDetailsPage extends StatelessWidget {
                                                           productData['name']);
                                                     },
                                                     child: CachedNetworkImage(
-                                                      imageUrl:
-                                                          productData[
-                                                                  'imageUrls']
-                                                              .first,
+                                                      imageUrl: productData[
+                                                              'imageUrls']
+                                                          .first,
                                                       width: 50,
                                                       height: 50,
                                                       fit: BoxFit.cover,
@@ -337,26 +336,25 @@ class StoreDetailsPage extends StatelessWidget {
                                                     ),
                                                   ),
                                                 ),
-                                                DataCell(Text(productData[
-                                                        'category'] ??
-                                                    'N/A')),
+                                                DataCell(Text(
+                                                    productData['category'] ??
+                                                        'N/A')),
                                                 DataCell(Text(productData[
                                                             'price'] !=
                                                         null
                                                     ? 'Rp ${productData['price']}'
                                                     : 'N/A')),
-                                                DataCell(Text(productData[
-                                                            'rating'] !=
-                                                        null
-                                                    ? productData['rating']
-                                                        .toString()
-                                                    : 'N/A')),
-                                                DataCell(Text(productData[
-                                                            'stock'] !=
-                                                        null
-                                                    ? productData['stock']
-                                                        .toString()
-                                                    : 'N/A')),
+                                                DataCell(Text(
+                                                    productData['rating'] !=
+                                                            null
+                                                        ? productData['rating']
+                                                            .toString()
+                                                        : 'N/A')),
+                                                DataCell(Text(
+                                                    productData['stock'] != null
+                                                        ? productData['stock']
+                                                            .toString()
+                                                        : 'N/A')),
                                               ],
                                             );
                                           }).toList(),
@@ -381,7 +379,8 @@ class StoreDetailsPage extends StatelessWidget {
     );
   }
 
-  void _showImageDialog(BuildContext context, String imageUrl, String productName) {
+  void _showImageDialog(
+      BuildContext context, String imageUrl, String productName) {
     showDialog(
       context: context,
       builder: (BuildContext context) {

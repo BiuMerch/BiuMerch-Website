@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 
 class ProductTable extends StatelessWidget {
   @override
@@ -60,7 +60,8 @@ class ProductTable extends StatelessWidget {
                 borderRadius: BorderRadius.circular(8),
               ),
               columns: [
-                DataColumn(label: _buildHeaderText('No')), // Serial number header
+                DataColumn(
+                    label: _buildHeaderText('No')), // Serial number header
                 DataColumn(label: _buildHeaderText('Name')),
                 DataColumn(label: _buildHeaderText('Price')),
                 DataColumn(label: _buildHeaderText('Stock')),

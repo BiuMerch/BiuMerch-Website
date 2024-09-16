@@ -32,7 +32,7 @@ class _ProdukPageState extends State<ProdukPage> {
               fit: BoxFit.cover,
             ),
           ),
-           Row(
+          Row(
             children: [
               // Sidebar
               Container(
@@ -67,7 +67,7 @@ class _ProdukPageState extends State<ProdukPage> {
                     ),
                     _buildDivider(),
                     // Menu items
-                  _buildMenuItem(
+                    _buildMenuItem(
                       context,
                       Icons.dashboard,
                       'Dashboard',
@@ -83,24 +83,24 @@ class _ProdukPageState extends State<ProdukPage> {
                       },
                       _selectedMenu == 'Dashboard',
                     ),
-                      _buildDivider(),
-                       _buildMenuItem(
-                    context,
-                    Icons.supervised_user_circle,
-                    'User',
-                    () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => UserPage()),
-                      ).then((_) {
-                        setState(() {
-                          _selectedMenu = 'user';
+                    _buildDivider(),
+                    _buildMenuItem(
+                      context,
+                      Icons.supervised_user_circle,
+                      'User',
+                      () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => UserPage()),
+                        ).then((_) {
+                          setState(() {
+                            _selectedMenu = 'user';
+                          });
                         });
-                      });
-                    },
-                    _selectedMenu == 'user',
-                  ),
-                  _buildDivider(),
+                      },
+                      _selectedMenu == 'user',
+                    ),
+                    _buildDivider(),
 
                     _buildMenuItem(
                       context,
@@ -120,7 +120,7 @@ class _ProdukPageState extends State<ProdukPage> {
                     ),
 
                     _buildDivider(),
-                   _buildMenuItem(
+                    _buildMenuItem(
                       context,
                       Icons.category,
                       'Produk',
@@ -132,24 +132,25 @@ class _ProdukPageState extends State<ProdukPage> {
                       _selectedMenu == 'Produk',
                     ),
                     _buildDivider(),
-                   _buildMenuItem(
-                        context,
-                        Icons.inventory,
-                        'kategori',
-                        () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => KategoriPage()),
-                          ).then((_) {
-                            setState(() {
-                              _selectedMenu = 'Kategori';
-                            });
+                    _buildMenuItem(
+                      context,
+                      Icons.inventory,
+                      'kategori',
+                      () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => KategoriPage()),
+                        ).then((_) {
+                          setState(() {
+                            _selectedMenu = 'Kategori';
                           });
-                        },
-                        _selectedMenu == 'Kategori',
-                      ),
+                        });
+                      },
+                      _selectedMenu == 'Kategori',
+                    ),
 
-                      _buildDivider(),
+                    _buildDivider(),
                     _buildMenuItem(
                       context,
                       Icons.payment,
@@ -204,7 +205,7 @@ class _ProdukPageState extends State<ProdukPage> {
                       _selectedMenu == 'Banner',
                     ),
                     _buildDivider(),
-                   ElevatedButton(
+                    ElevatedButton(
                       onPressed: () async {
                         // Clear the session
                         SharedPreferences prefs =
