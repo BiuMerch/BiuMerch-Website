@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "930011368188",
+    "project_id": "simirpl22a-biumerch-51620",
+    "storage_bucket": "simirpl22a-biumerch-51620.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:930011368188:android:4a82a2a8912361bb8aa579",
+        "android_client_info": {
+          "package_name": "com.example.apa"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCYXvx5wSyyPsfPM3zC42nEEqmTnEHFWdw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:930011368188:android:13fd25473cb1c7d18aa579",
+        "android_client_info": {
+          "package_name": "com.example.biumerch_mobile_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCYXvx5wSyyPsfPM3zC42nEEqmTnEHFWdw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
